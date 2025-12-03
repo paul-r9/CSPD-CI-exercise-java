@@ -3,13 +3,15 @@ package com.rocketnine;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.Objects;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CSDListingsTests {
     WebDriver driver;
@@ -17,10 +19,17 @@ class CSDListingsTests {
 
     @BeforeEach
     void setup() {
+        driver = new ChromeDriver();
+
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless=new");
 //        driver = new ChromeDriver(options);
-        driver = new ChromeDriver();
+
+        driver.get("https://rocketninesolutions.com/top-notch-agile-training/");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.titleIs("Top-Notch Agile Training – Rocket Nine Solutions"));
+
 //        driver = new SafariDriver();
     }
 
@@ -31,37 +40,23 @@ class CSDListingsTests {
 //        WebDriver staticDriver = new ChromeDriver();
 //    }
 
-
     @Test
-    @Disabled
-    void failingTestToDemonstrateCIBuildFailure() {
-        Assertions.fail("Test shows that CI build fails, and Readme displays build state.");
+    void demoADObuildFails() {
+        Assertions.fail("THis test fails locally, it should break the CI build");
     }
 
     @Test
-    @Disabled
-    @Timeout(value = 60, unit = SECONDS)
+    @Timeout(value = 6, unit = SECONDS)
     void catYogaClassListing_shouldNotBeListed() {
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
-        driver.get("https://rocketninesolutions.com/top-notch-agile-training/");
-
         String pageSource = driver.getPageSource();
         boolean certifiedScrumDeveloper = Objects.requireNonNull(pageSource).contains("Cat Yoga");
-        assertFalse(certifiedScrumDeveloper, "we should not be offering public  Cat Yoga class");
+        assertFalse(certifiedScrumDeveloper, "we should not be offering public Cat Yoga class");
     }
 
     @Test
-    @Disabled
     @Timeout(value = 60, unit = SECONDS)
     void allCoursesPaulOffers_ShouldBeListed() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
-        driver.get("https://rocketninesolutions.com/top-notch-agile-training/");
-
         // This page lists ALL rocket nine classes over the next couple of months
-        String title = driver.getTitle();
-        assertEquals("Top-Notch Agile Training – Rocket Nine Solutions", title);
-
         String pageSource = driver.getPageSource();
         boolean certifiedScrumDeveloper = Objects.requireNonNull(pageSource).contains("Certified Scrum Developer");
         assertTrue(certifiedScrumDeveloper, "Could not locate Certified Scrum Developer");

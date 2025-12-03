@@ -3,6 +3,7 @@ package com.rocketnine;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,9 +22,9 @@ class CSDListingsTests {
     void setup() {
         driver = new ChromeDriver();
 
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless=new");
-//        driver = new ChromeDriver(options);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        driver = new ChromeDriver(options);
 
         driver.get("https://rocketninesolutions.com/top-notch-agile-training/");
 
@@ -40,10 +41,10 @@ class CSDListingsTests {
 //        WebDriver staticDriver = new ChromeDriver();
 //    }
 
-    @Test
-    void demoADObuildFails() {
-        Assertions.fail("THis test fails locally, it should break the CI build");
-    }
+//    @Test
+//    void demoADObuildFails() {
+//        Assertions.fail("THis test fails locally, it should break the CI build");
+//    }
 
     @Test
     @Timeout(value = 6, unit = SECONDS)

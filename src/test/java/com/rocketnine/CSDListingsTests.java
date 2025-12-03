@@ -20,8 +20,7 @@ class CSDListingsTests {
 
     @BeforeEach
     void setup() {
-        driver = new ChromeDriver();
-
+    //    driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new");
         driver = new ChromeDriver(options);

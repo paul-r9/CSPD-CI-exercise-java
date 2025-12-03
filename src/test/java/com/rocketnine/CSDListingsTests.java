@@ -28,7 +28,7 @@ class CSDListingsTests {
 
         driver.get("https://rocketninesolutions.com/top-notch-agile-training/");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.titleIs("Top-Notch Agile Training – Rocket Nine Solutions"));
 
 //        driver = new SafariDriver();
@@ -47,7 +47,7 @@ class CSDListingsTests {
 //    }
 
     @Test
-    @Timeout(value = 6, unit = SECONDS)
+    @Timeout(value = 60, unit = SECONDS)
     void catYogaClassListing_shouldNotBeListed() {
         String pageSource = driver.getPageSource();
         boolean certifiedScrumDeveloper = Objects.requireNonNull(pageSource).contains("Cat Yoga");

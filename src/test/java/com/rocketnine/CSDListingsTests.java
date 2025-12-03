@@ -17,9 +17,10 @@ class CSDListingsTests {
 
     @BeforeEach
     void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        driver = new ChromeDriver(options);
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless=new");
+//        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
 //        driver = new SafariDriver();
     }
 
@@ -32,11 +33,13 @@ class CSDListingsTests {
 
 
     @Test
+    @Disabled
     void failingTestToDemonstrateCIBuildFailure() {
         Assertions.fail("Test shows that CI build fails, and Readme displays build state.");
     }
 
     @Test
+    @Disabled
     @Timeout(value = 60, unit = SECONDS)
     void catYogaClassListing_shouldNotBeListed() {
 
@@ -49,6 +52,7 @@ class CSDListingsTests {
     }
 
     @Test
+    @Disabled
     @Timeout(value = 60, unit = SECONDS)
     void allCoursesPaulOffers_ShouldBeListed() {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));

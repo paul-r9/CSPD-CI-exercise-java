@@ -30,6 +30,12 @@ class CSDListingsTests {
 //        WebDriver staticDriver = new ChromeDriver();
 //    }
 
+
+    @Test
+    void failingTestToDemonstrateCIBuildFailure() {
+        Assertions.fail("Test shows that CI build fails, and Readme displays build state.");
+    }
+
     @Test
     @Timeout(value = 60, unit = SECONDS)
     void catYogaClassListing_shouldNotBeListed() {
